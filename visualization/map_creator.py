@@ -10,7 +10,7 @@ def map_creator(data: DataFrame):
     color_map = plt.get_cmap('jet')
     c = cl.to_hex(color_map(0.1))
 
-    times = data['time_stamp'].tolist()
+    times = data['time_stamp_ms'].tolist()
     coordinates = [[longitude, latitude] for latitude, longitude in zip(
         data['latitude'].tolist(), data['longitude'].tolist()
     )]
@@ -57,3 +57,17 @@ def map_creator(data: DataFrame):
     ).add_to(folium_map)
 
     folium_map.save("output/sample.html")
+
+
+def plot_target_date_location_history(data: DataFrame):
+    folium_map = folium.Map(location=[34.390921, 135.900258], zoom_start=7)
+
+    for index, row in data.iterrows():
+        latitude = row['latitude']
+        longitude = row['longitude']
+        folium.CircleMarker(
+            location=(latitude, longitude),
+            radius=1,
+        ).add_to(folium_map)
+
+    folium_map.save("output/plot_all.html")
