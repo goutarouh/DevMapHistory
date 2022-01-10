@@ -1,14 +1,9 @@
 import folium
 import folium.plugins as folium_plugins
 from pandas import DataFrame
-from matplotlib import colors as cl
-import matplotlib.pyplot as plt
 
 
 def map_creator(data: DataFrame):
-
-    color_map = plt.get_cmap('jet')
-    c = cl.to_hex(color_map(0.1))
 
     times = data['time_stamp_ms'].tolist()
     coordinates = [[longitude, latitude] for latitude, longitude in zip(
