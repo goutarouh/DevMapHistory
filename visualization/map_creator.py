@@ -23,9 +23,9 @@ def map_creator(data: DataFrame):
                 'popup': "popup",
                 'icon': 'circle',
                 'iconstyle': {
-                    'color': c,
+                    'color': '#FF0000',
                     'fill': True,
-                    'radius': 5
+                    'radius': 3
                 },
                 'style': {
                     'fillOpacity': 1,
@@ -39,7 +39,7 @@ def map_creator(data: DataFrame):
             'type': 'FeatureCollection',
             'features': features
         }
-        , transition_time=500
+        , transition_time=10
         , date_options='YYYY/MM/DD HH:mm:ss'
         , period='PT1M'
         , duration='PT1M'
