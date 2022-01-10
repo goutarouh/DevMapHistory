@@ -1,14 +1,9 @@
 import folium
 import folium.plugins as folium_plugins
 from pandas import DataFrame
-from matplotlib import colors as cl
-import matplotlib.pyplot as plt
 
 
 def map_creator(data: DataFrame):
-
-    color_map = plt.get_cmap('jet')
-    c = cl.to_hex(color_map(0.1))
 
     times = data['time_stamp_ms'].tolist()
     coordinates = [[longitude, latitude] for latitude, longitude in zip(
@@ -28,9 +23,9 @@ def map_creator(data: DataFrame):
                 'popup': "popup",
                 'icon': 'circle',
                 'iconstyle': {
-                    'color': c,
+                    'color': '#FF0000',
                     'fill': True,
-                    'radius': 5
+                    'radius': 3
                 },
                 'style': {
                     'fillOpacity': 1,
@@ -44,7 +39,7 @@ def map_creator(data: DataFrame):
             'type': 'FeatureCollection',
             'features': features
         }
-        , transition_time=500
+        , transition_time=10
         , date_options='YYYY/MM/DD HH:mm:ss'
         , period='PT1M'
         , duration='PT1M'
