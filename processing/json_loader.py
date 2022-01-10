@@ -20,15 +20,15 @@ def load_json_with_ijson(file_path: str):
             if filter_date(history_datetime):
                 df.loc[index] = [time_stamp_ms, str_history_datetime, latitude, longitude]
 
-    df.to_csv(settings.output_csv_path())
+    df.to_csv(settings.data_csv_path())
 
 
 def filter_date(history_datetime: datetime) -> bool:
-    start = datetime.strptime(settings.start_date(), '%Y-%m-%d %H:%M:%S')
-    end = datetime.strptime(settings.end_date(), '%Y-%m-%d %H:%M:%S')
+    start = settings.start_date()
+    end = settings.end_date()
     is_in_target_range = start < history_datetime < end
     return is_in_target_range
 
 
-def load_csv() -> DataFrame:
-    return pd.read_csv(settings.output_csv_path())
+def load_csv(path: str) -> DataFrame:
+    return pd.read_csv(path)
